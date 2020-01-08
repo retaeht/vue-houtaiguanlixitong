@@ -59,7 +59,12 @@
             ></el-button>
             <!-- 分配角色按钮 -->
             <el-tooltip effect="dark" content="分配角色" placement="top" :enterable="false">
-              <el-button type="primary" icon="el-icon-setting" size="mini"></el-button>
+              <el-button
+                type="primary"
+                icon="el-icon-setting"
+                size="mini"
+                @click="setRoleDialog(scope.row)"
+              ></el-button>
             </el-tooltip>
             <!-- {{ scope.row }} -->
           </template>
@@ -126,6 +131,32 @@
         <el-button type="primary" @click="motifyUser">确 定</el-button>
       </span>
     </el-dialog>
+
+    <!-- 弹出分配角色对话框 -->
+    <el-dialog title="分配角色" :visible.sync="setRoleDialogVisible" width="30%">
+      <!-- 内容主体区域 -->
+      <div>
+        <p>当前的用户: {{ userInfo.username }}</p>
+        <p>当前的角色: {{ userInfo.role_name }}</p>
+      </div>
+      <!-- 下拉菜单 -->
+      <p>
+        分配新角色:
+        <el-select v-model="seletedRoleId" placeholder="请选择">
+          <el-option
+            v-for="item in roleList"
+            :key="item.id"
+            :label="item.roleName"
+            :value="item.id"
+          ></el-option>
+        </el-select>
+      </p>
+      <!-- 底部区域 -->
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="setRoleDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="addRole">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -165,6 +196,8 @@ export default {
       dialogVisible: false,
       // 修改对话框的显示隐藏
       motifyDialogVisible: false,
+      // 分配角色对话框的显示隐藏
+      setRoleDialogVisible: false,
       // 添加用户数据对象
       addForm: {
         username: '',
@@ -224,7 +257,13 @@ export default {
           },
           { validator: checkMobile, trigger: 'blur' }
         ]
-      }
+      },
+      // 需要被分配角色的用户信息
+      userInfo: {},
+      // 所有角色列表
+      roleList: [],
+      // 选中角色 id
+      seletedRoleId: ''
     }
   },
   methods: {
@@ -261,7 +300,7 @@ export default {
           duration: 1000
         })
       }
-      this.$message.error({
+      this.$message.success({
         message: '更新状态成功',
         duration: 1000
       })
@@ -328,7 +367,9 @@ export default {
       })
         .then(async () => {
           const { data: res } = await this.$axios.delete('users/' + id)
-          if (res.meta.status !== 200) return this.$message.error('修改数据失败')
+          if (res.meta.status !== 200) {
+            return this.$message.error('修改数据失败')
+          }
           this.getUserList()
           this.$message({
             type: 'success',
@@ -341,6 +382,30 @@ export default {
             message: '已取消删除'
           })
         })
+    },
+    // 获取所有角色信息
+    async setRoleDialog(role) {
+      const { data: res } = await this.$axios.get('roles')
+      if (res.meta.status !== 200) return this.$message.error('失败')
+      console.log(res.data)
+      this.userInfo = role
+      this.roleList = res.data
+      this.setRoleDialogVisible = true
+    },
+    // 添加角色
+    async addRole() {
+      if (!this.seletedRoleId) return this.$message.error('失败')
+      console.log(this.roleList)
+      console.log(this.userInfo)
+      const { data: res } = await this.$axios.put(
+        'users/' + this.userInfo.id + '/role',
+        { rid: this.seletedRoleId }
+      )
+      if (res.meta.status !== 200) return this.$message.error('失败')
+      this.seletedRoleId = ''
+      this.setRoleDialogVisible = false
+      this.getUserList()
+      this.$message.success('成功')
     }
   },
   created() {

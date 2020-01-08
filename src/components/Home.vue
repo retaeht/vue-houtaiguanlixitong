@@ -136,7 +136,7 @@ export default {
   line-height: 24px;
   font-size: 14px;
   text-align: center;
-  color: #fff;
+  color: #eee;
   cursor: pointer;
   user-select: none;
   // background-color: #fff;
