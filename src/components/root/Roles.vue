@@ -140,9 +140,9 @@ export default {
           { min: 1, max: 50, message: '长度不能超过50个字符', trigger: 'blur' }
         ]
       },
-      // 添加角色对话框状态
+      // 角色对话框状态
       dialogVisible: false,
-      // 添加权限对话框状态
+      // 权限对话框状态
       rightsDialogVisible: false,
       // 所有权限数据列表
       rightsList: [],
@@ -172,17 +172,22 @@ export default {
     },
     // 添加角色
     addRole() {
-      this.$axios
-        .post('roles', this.roleForm)
-        .then(res => {
-          console.log(res.data)
-          this.$message.success('添加成功')
-          this.dialogVisible = false
-          this.getRoleList()
-        })
-        .catch(err => {
-          console.log(err)
-        })
+      this.$refs.roleFormRef.validate(valid => {
+        if (!valid) {
+          return this.$message.error('false')
+        }
+        this.$axios
+          .post('roles', this.roleForm)
+          .then(res => {
+            console.log(res.data)
+            this.$message.success('添加成功')
+            this.dialogVisible = false
+            this.getRoleList()
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      })
     },
     // 删除角色
     deleteRole(id) {

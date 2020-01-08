@@ -17,3 +17,6 @@ html,body,#app {
   text-align: center;
   margin-top: 15px;
 }
+.el-cascader-panel {
+  height: 200px !important;
+}
