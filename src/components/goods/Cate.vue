@@ -163,6 +163,7 @@ export default {
       this.cateList = res.data.result
       this.total = res.data.total
       console.log(this.total)
+      console.log(this.cateList)
     },
     handleSizeChange(newSize) {
       this.queryInfo.pagesize = newSize
