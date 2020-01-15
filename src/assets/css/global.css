@@ -20,3 +20,18 @@ html,body,#app {
 .el-cascader-panel {
   height: 200px !important;
 }
+.el-steps {
+  margin: 15px 0;
+}
+.el-step__title {
+  font-size: 13px;
+}
+.el-cascader {
+  width: 250px;
+}
+.el-checkbox {
+  margin: 0 10px 0 0 !important;
+}
+.ql-container {
+  min-height: 300px;
+}

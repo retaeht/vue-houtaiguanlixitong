@@ -13,7 +13,8 @@ module.exports = {
     'eol-last': 0,
     'no-trailing-spaces': 0,
     'space-before-function-paren': 0,
-    'vue/no-unused-vars': 0
+    'vue/no-unused-vars': 0,
+    'no-unused-vars': 0
   },
   parserOptions: {
     parser: 'babel-eslint'
