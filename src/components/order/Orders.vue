@@ -38,7 +38,7 @@
           <template slot-scope="scope">{{ scope.row.create_time | format }}</template>
         </el-table-column>
         <el-table-column label="操作" width="120px">
-          <template slot-scope="scope">
+          <template>
             <el-button type="primary" size="mini" icon="el-icon-edit" @click="editLocal"></el-button>
             <el-button type="success" size="mini" icon="el-icon-location" @click="showProcessBox"></el-button>
           </template>
