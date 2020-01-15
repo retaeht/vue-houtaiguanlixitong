@@ -17,13 +17,14 @@
         :data="cateList"
         :columns="columns"
         show-index
+        :show-row-hover="false"
         :selection-type="false"
         :expand-type="false"
         index-text="#"
-        :border="true"
+        border
       >
         <!-- 是否有效 -->
-        <template slot="isOk" scope="scope">
+        <template slot="isOk" slot-scope="scope">
           <i
             class="el-icon-success"
             style="color:lightgreen"

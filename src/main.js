@@ -16,7 +16,7 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 // 配置根路径
-axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
+axios.defaults.baseURL = 'https://renoblog.xyz/api/private/v1/'
 // 全局配置富文本
 Vue.use(VueQuillEditor/* { default global options } */)
 // 配置请求预处理

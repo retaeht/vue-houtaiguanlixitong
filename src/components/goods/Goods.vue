@@ -31,7 +31,7 @@
         <el-table-column prop="goods_price" width="90" label="商品价格"></el-table-column>
         <el-table-column prop="goods_weight" label="商品重量" width="90"></el-table-column>
         <el-table-column prop="upd_time" label="创建时间" width="200">
-          <template slot-scope="scope">{{scope.row.goods_price | format('yyyy-MM-dd hh:mm:ss')}}</template>
+          <template slot-scope="scope">{{scope.row.goods_price | format}}</template>
         </el-table-column>
         <el-table-column label="操作" width="180">
           <template slot-scope="scope">
