@@ -15,14 +15,26 @@ import VueQuillEditor from 'vue-quill-editor'
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
+// 导入 Nprogress 包对应的js和css
+import Nprogress from 'nprogress'
+import 'nprogress/nprogress.css'
 // 配置根路径
-axios.defaults.baseURL = 'https://renoblog.xyz/api/private/v1/'
+axios.defaults.baseURL = 'http://timemeetyou.com:8889/api/private/v1/'
 // 全局配置富文本
 Vue.use(VueQuillEditor/* { default global options } */)
 // 配置请求预处理
 axios.interceptors.request.use(config => {
+  // 得到配置对象
   console.log(config)
+  // 在拦截器中，展示进度条 Nprogress.start()
+  Nprogress.start()
   config.headers.Authorization = window.sessionStorage.getItem('token')
+  // 在最后必须 return config
+  return config
+})
+// 在拦截器中，隐藏进度条 Nprogress.done()
+axios.interceptors.response.use(config => {
+  Nprogress.done()
   return config
 })
 Vue.prototype.$axios = axios
