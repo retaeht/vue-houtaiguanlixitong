@@ -5,16 +5,10 @@
 > 用于管理用户账号，商品分类，商品信息，订单，数据统计等业务功能
 
 
-
-![](./src/assets/mall_desc01.png)
-
-
-
 ### 开发模式
 
 > 电商后台管理系统整体采用前后端分离的开发模式,其中前端项目是基于Vue技术栈的SPA项目
 
-![](./src/assets//mall_desc02.png)
 
 ### 技术选型
 
@@ -25,14 +19,6 @@
 - Element-UI
 - Axios
 - Echarts
-
-#### 后端项目技术栈
-
-- Node.js
-- Express
-- Jwt
-- Mysql
-- Sequelize
 
 ### 项目初始化
 
@@ -45,20 +31,6 @@
 5. 配置 Axios 库
 6. 初始化 git 远程仓库
 
-##### 相关依赖-按需导入
-
-![](./src/assets//mall_desc03.png)
-
-#### 后端项目的环境安装配置
-
-1. 安装MySQL数据库
-2. 安装Node.js环境
-3. 配置项目相关信息
-4. 启动项目
-   1. 使用phpstudy导入数据库并运行
-   2. npm init 后端项目
-   3. node ./app.js
-5. 使用Postman测试后台项目接口是否正常
 
 ### 登录概述
 
@@ -75,7 +47,6 @@
 3. 通过sesion在服务器端记录状态
 4. 通过token维持状态(不允许跨域使用)
 
-![](./src/assets//mall_desc04.png)
 
 #### 登录业务流程
 
@@ -141,8 +112,6 @@ axios.interceptors.request.use(config => {
 #### 权限管理业务分析
 
 > 通过权限管理模块控制不同的用户可以进行哪些操作,具体可以通过角色的方式进行控制,即每个用户分配一个特定的角色,角色包括不同的功能权限
-
-![](./src/assets//mall_desc05.png)
 
 
 
@@ -384,37 +353,3 @@ const compression = require('compression')
 // 3.启用中间件
 app.use(compression())
 ```
-
-#### 配置https服务
-
-##### 为什么要启用https服务
-
-- 传统的http协议传输的数据都是明文,不安全
-- 采用https协议对传输的数据进行了加密处理,可以防止数据被中间人窃取,使用更安全
-
-申请ssl证书(https://freessl.org) => 正常企业还是使用收费ssh(http协议默认运行在80端口,https默认运行在443端口)
-
-#### 使用pm2管理应用
-
-```js
-1. npm i pm2 -g //全局安装
-2. pm2 start 脚本(如./app.js) --name 自定义名称 // 启动项目
-3. pm2 ls //查看服务器运行的项目
-4. pm2 restart 自定义名称 //重启项目
-5. pm2 stop 自定义名称 //停止项目
-6. pm2 delete 自定义名称 //删除项目
-```
-
-![](./src/assets//mall_desc06.png)
-
-
-
----
-
-[接口API](./api接口文档.md)
-
-[vue.config.js配置](https://cli.vuejs.org/zh/config/#lintonsave)
-
-[路由懒加载](https://router.vuejs.org/zh/guide/advanced/lazy-loading.html)
-
-[babel配置](https://babeljs.io/docs/en/babel-plugin-syntax-dynamic-import/)
