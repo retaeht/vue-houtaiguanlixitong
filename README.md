@@ -26,14 +26,6 @@
 - Axios
 - Echarts
 
-#### 后端项目技术栈
-
-- Node.js
-- Express
-- Jwt
-- Mysql
-- Sequelize
-
 ### 项目初始化
 
 #### 前端项目初始化步骤
@@ -45,20 +37,7 @@
 5. 配置 Axios 库
 6. 初始化 git 远程仓库
 
-##### 相关依赖-按需导入
 
-![](./src/assets//mall_desc03.png)
-
-#### 后端项目的环境安装配置
-
-1. 安装MySQL数据库
-2. 安装Node.js环境
-3. 配置项目相关信息
-4. 启动项目
-   1. 使用phpstudy导入数据库并运行
-   2. npm init 后端项目
-   3. node ./app.js
-5. 使用Postman测试后台项目接口是否正常
 
 ### 登录概述
 
@@ -162,9 +141,7 @@ axios.interceptors.request.use(config => {
 
 
 
-### 项目所用依赖(vue全家桶不描述)
-
-1. 运行依赖
+### 项目所用依赖运行依赖
 
 - axios => 发送请求
 - echarts => 图表
@@ -384,30 +361,6 @@ const compression = require('compression')
 // 3.启用中间件
 app.use(compression())
 ```
-
-#### 配置https服务
-
-##### 为什么要启用https服务
-
-- 传统的http协议传输的数据都是明文,不安全
-- 采用https协议对传输的数据进行了加密处理,可以防止数据被中间人窃取,使用更安全
-
-申请ssl证书(https://freessl.org) => 正常企业还是使用收费ssh(http协议默认运行在80端口,https默认运行在443端口)
-
-#### 使用pm2管理应用
-
-```js
-1. npm i pm2 -g //全局安装
-2. pm2 start 脚本(如./app.js) --name 自定义名称 // 启动项目
-3. pm2 ls //查看服务器运行的项目
-4. pm2 restart 自定义名称 //重启项目
-5. pm2 stop 自定义名称 //停止项目
-6. pm2 delete 自定义名称 //删除项目
-```
-
-![](./src/assets//mall_desc06.png)
-
-
 
 ---
 
